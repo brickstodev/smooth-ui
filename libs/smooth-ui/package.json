@@ -1,6 +1,16 @@
 {
   "name": "@brickstodev/smooth-ui",
   "version": "0.0.1",
+  "description": "An Angular component library with a smooth design and new features tailored for use in both websites and web applications built with Angular.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brickstodev/smooth-ui.git",
+    "directory": "libs/smooth-ui"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "peerDependencies": {
     "@angular/common": "^22.2.0",
     "@angular/core": "^22.2.0"
