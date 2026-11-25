@@ -1,0 +1,115 @@
+{
+  "name": "smooth-ui-demo",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "prefix": "app",
+  "sourceRoot": "apps/smooth-ui-demo/src",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@angular/build:application",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "outputPath": "dist/apps/smooth-ui-demo",
+        "browser": "apps/smooth-ui-demo/src/main.ts",
+        "tsConfig": "apps/smooth-ui-demo/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": [
+          {
+            "glob": "**/*",
+            "input": "apps/smooth-ui-demo/public"
+          },
+          {
+            "glob": "theme-init.js",
+            "input": "libs/smooth-ui/theme",
+            "output": "/"
+          }
+        ],
+        "styles": ["libs/smooth-ui/theme/theme.scss", "apps/smooth-ui-demo/src/styles.scss"],
+        "server": "apps/smooth-ui-demo/src/main.server.ts",
+        "ssr": {
+          "entry": "apps/smooth-ui-demo/src/server.ts"
+        },
+        "outputMode": "server",
+        "security": {
+          "allowedHosts": []
+        }
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "4kb",
+              "maximumError": "8kb"
+            }
+          ],
+          "outputHashing": "all",
+          "optimization": {
+            "scripts": true,
+            "styles": {
+              "minify": true,
+              "inlineCritical": false
+            },
+            "fonts": true
+          }
+        },
+        "development": {
+          "optimization": false,
+          "extractLicenses": false,
+          "sourceMap": true
+        }
+      }
+    },
+    "serve": {
+      "continuous": true,
+      "readyWhen": {
+        "signal": true
+      },
+      "executor": "@angular/build:dev-server",
+      "defaultConfiguration": "development",
+      "configurations": {
+        "production": {
+          "buildTarget": "smooth-ui-demo:build:production"
+        },
+        "development": {
+          "buildTarget": "smooth-ui-demo:build:development"
+        }
+      }
+    },
+    "test": {
+      "executor": "@angular/build:unit-test",
+      "options": {
+        "watch": false
+      }
+    },
+    "serve-static": {
+      "continuous": true,
+      "readyWhen": {
+        "signal": true
+      },
+      "dependsOn": ["build"],
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "smooth-ui-demo:build",
+        "staticFilePath": "dist/apps/smooth-ui-demo/browser",
+        "spa": true
+      }
+    },
+    "typecheck": {
+      "executor": "nx:run-commands",
+      "cache": true,
+      "inputs": ["default", "^production"],
+      "options": {
+        "commands": ["tsc -p apps/smooth-ui-demo/tsconfig.app.json --noEmit", "tsc -p apps/smooth-ui-demo/tsconfig.spec.json --noEmit"],
+        "parallel": false
+      }
+    }
+  }
+}

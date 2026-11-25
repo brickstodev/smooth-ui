@@ -4,3 +4,8 @@
 /.nx/cache
 /.nx/workspace-data
 .nx/self-healing
+.angular
+pnpm-lock.yaml
+.agents
+.claude/skills/web-design-guidelines
+docs/smoothui-interactivo.html

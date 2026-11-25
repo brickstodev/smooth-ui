@@ -1,3 +1,10 @@
 {
-  "singleQuote": true
+  "singleQuote": true,
+  "printWidth": 200,
+  "overrides": [
+    {
+      "files": "*.md",
+      "options": { "proseWrap": "never", "printWidth": 9999 }
+    }
+  ]
 }
