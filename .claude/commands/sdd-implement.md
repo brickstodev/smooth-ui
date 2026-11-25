@@ -3,8 +3,7 @@ description: SDD · Implementa UNA tarea, primero los tests (uso - /sdd-implemen
 agent: accept edits
 ---
 
-Implementa SOLO la tarea $1 de specs/$0/tasks.md, siguiendo specs/$0/plan.md, docs/constitution.md
-y la skill sdd.
+Implementa SOLO la tarea $1 de specs/$0/tasks.md, siguiendo specs/$0/plan.md, docs/constitution.md y la skill sdd.
 
 1. Escribe primero los tests y comprueba que fallan.
 2. Escribe el código hasta que pasen.

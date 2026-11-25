@@ -5,9 +5,7 @@ description: Formatea el código fuente de este workspace con Prettier a través
 
 # Formatear código
 
-Prettier 3 es el único formateador. Su configuración está en `.prettierrc` (`singleQuote: true`, `printWidth: 150`) y
-`.prettierignore`; nunca repitas ni sobrescribas esas opciones en línea, y nunca formatees a mano código que gestiona
-Prettier.
+Prettier 3 es el único formateador. Su configuración está en `.prettierrc` (`singleQuote: true`, `printWidth: 150`) y `.prettierignore`; nunca repitas ni sobrescribas esas opciones en línea, y nunca formatees a mano código que gestiona Prettier.
 
 ## Pasos
 
@@ -19,8 +17,7 @@ Prettier.
 
 ## Orden de los miembros de una clase
 
-Prettier no reordena miembros, así que aplica este orden a mano al escribir o formatear una clase. ESLint lo exige con
-`@typescript-eslint/member-ordering` en `eslint.config.mjs`:
+Prettier no reordena miembros, así que aplica este orden a mano al escribir o formatear una clase. ESLint lo exige con `@typescript-eslint/member-ordering` en `eslint.config.mjs`:
 
 1. Declaraciones privadas
 2. Declaraciones públicas
@@ -32,15 +29,12 @@ Prettier no reordena miembros, así que aplica este orden a mano al escribir o f
 
 ## Nombres de los miembros privados
 
-Todo miembro `private` (campos, métodos y funciones, estáticos o no) debe empezar por `_`, por ejemplo
-`private readonly _injector` y `private _resolvePlacement()`. Los miembros públicos y protegidos nunca llevan el prefijo.
-Si a un miembro privado le falta, renómbralo y actualiza todas las referencias de la clase.
+Todo miembro `private` (campos, métodos y funciones, estáticos o no) debe empezar por `_`, por ejemplo `private readonly _injector` y `private _resolvePlacement()`. Los miembros públicos y protegidos nunca llevan el prefijo. Si a un miembro privado le falta, renómbralo y actualiza todas las referencias de la clase.
 
 ## Reglas
 
 - Nunca formatees todo el workspace (`--all`) salvo que el usuario lo pida.
-- Solo formato: aparte del orden de miembros y del prefijo `_` de los privados, nada de correcciones de lint,
-  reordenación de imports, renombrados ni refactors en la misma pasada.
+- Solo formato: aparte del orden de miembros y del prefijo `_` de los privados, nada de correcciones de lint, reordenación de imports, renombrados ni refactors en la misma pasada.
 - No toques `dist/`, `node_modules/`, `pnpm-lock.yaml` ni nada de `.prettierignore`.
 - Si un archivo no se puede parsear, para y enseña el error en lugar de editar alrededor.
 - Cambiar `.prettierrc` o `.prettierignore` es un cambio de configuración: propón el diff y espera.

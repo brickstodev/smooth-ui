@@ -3,8 +3,7 @@ description: SDD · Dónde estamos - fase actual y siguiente paso de una spec
 agent: plan
 ---
 
-Lee specs/$0/ (spec.md, plan.md y tasks.md, los que existan) y MEMORY.md.
-Dime en pocas líneas:
+Lee specs/$0/ (spec.md, plan.md y tasks.md, los que existan) y MEMORY.md. Dime en pocas líneas:
 
 1. En qué fase del flujo SDD está esta spec y cuál es su estado.
 2. Tareas hechas y pendientes (x de y).

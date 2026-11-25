@@ -3,8 +3,7 @@ description: Escribe un commit nuevo teniendo en cuenta los archivos nuevos, mod
 agent: plan
 ---
 
-Quiero hacer un commit con los archivos nuevos, modificados y borrados.
-Antes de escribir el commit, prepara un plan con:
+Quiero hacer un commit con los archivos nuevos, modificados y borrados. Antes de escribir el commit, prepara un plan con:
 
 1. Cómo lo vas a escribir, valorando si conviene hacer más de un commit.
 2. Qué archivos incluirías en cada commit.
