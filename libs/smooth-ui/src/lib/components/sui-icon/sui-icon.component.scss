@@ -1,0 +1,35 @@
+// The stroke uses currentColor (set on the svg), so there is no color rule: it follows the container and forced colors.
+:host {
+  display: inline-flex;
+  flex: none;
+  justify-content: center;
+  align-items: center;
+  inline-size: 1em;
+  block-size: 1em;
+}
+
+:host(.sui-icon--xs) {
+  inline-size: var(--sui-size-icon-xs);
+  block-size: var(--sui-size-icon-xs);
+}
+
+:host(.sui-icon--sm) {
+  inline-size: var(--sui-size-icon-sm);
+  block-size: var(--sui-size-icon-sm);
+}
+
+:host(.sui-icon--md) {
+  inline-size: var(--sui-size-icon-md);
+  block-size: var(--sui-size-icon-md);
+}
+
+:host(.sui-icon--lg) {
+  inline-size: var(--sui-size-icon-lg);
+  block-size: var(--sui-size-icon-lg);
+}
+
+svg {
+  display: block;
+  inline-size: 100%;
+  block-size: 100%;
+}
