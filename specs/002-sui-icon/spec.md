@@ -4,7 +4,7 @@ Status: implemented
 
 ## Contexto y objetivo
 
-La librería no sabe dibujar iconos. El selector de tema (spec 001) los representa de forma provisional, con su nombre como texto oculto, y los componentes que vienen después (botón, selector desplegable, avisos...) los necesitan. Este cambio añade un componente de icono reutilizable con el set de 44 iconos de la referencia de diseño, el mismo que usa Figma. Además, sustituye el texto oculto del selector de tema por el icono real, lo que modifica la spec 001.
+La librería no sabe dibujar iconos. El selector de tema (spec 001) los representa de forma provisional, con su nombre como texto oculto, y los componentes que vienen después (botón, selector desplegable, avisos...) los necesitan. Este cambio añade un componente de icono reutilizable con un set de 79 iconos: los 44 de la referencia de diseño, los mismos que usa Figma, y 35 más que el propietario añadió después con el mismo estilo. Además, sustituye el texto oculto del selector de tema por el icono real, lo que modifica la spec 001.
 
 ## Usuarios
 
@@ -22,13 +22,13 @@ La librería no sabe dibujar iconos. El selector de tema (spec 001) los represen
 
 ## Definiciones
 
-- **Set de iconos**: los 44 iconos de la referencia de diseño: check, x, chevron-down, chevron-up, chevron-right, chevron-left, arrow-right, arrow-left, plus, minus, search, info, alert-triangle, check-circle, x-circle, star, heart, user, settings, bell, calendar, mail, lock, eye, eye-off, trash, edit, download, upload, more-horizontal, more-vertical, filter, external-link, copy, refresh, sun, moon, menu, home, image, file, grid, clock, help.
+- **Set de iconos**: 79 iconos, en este orden: check, x, chevron-down, chevron-up, chevron-right, chevron-left, arrow-right, arrow-left, arrow-up, arrow-down, plus, minus, plus-circle, minus-circle, search, info, alert-triangle, alert-circle, check-circle, x-circle, star, heart, thumbs-up, thumbs-down, user, settings, bell, calendar, mail, message-circle, phone, lock, shield, key, eye, eye-off, trash, edit, save, download, upload, undo, redo, refresh, loader, more-horizontal, more-vertical, filter, external-link, link, share, copy, sun, moon, menu, list, home, image, camera, play, pause, file, folder, bookmark, tag, credit-card, shopping-cart, gift, map-pin, globe, grid, circle, square, maximize, minimize, clock, help, log-out, log-in. 44 vienen de la referencia de diseño; los 35 restantes (arrow-up, arrow-down, plus-circle, minus-circle, alert-circle, thumbs-up, thumbs-down, message-circle, phone, shield, key, save, undo, redo, loader, link, share, list, camera, play, pause, folder, bookmark, tag, credit-card, shopping-cart, gift, map-pin, globe, circle, square, maximize, minimize, log-out, log-in) los añadió el propietario y no están en la referencia.
 - **Icono decorativo**: icono oculto a las tecnologías de asistencia, porque su significado ya lo da el texto o el nombre accesible del contenedor.
 - **Etiqueta**: texto opcional que da al icono un nombre accesible propio. Una etiqueta está **vacía** si no se indica, no tiene texto o solo tiene espacios en blanco.
 
 ## Requisitos funcionales
 
-- FR-1: EL SISTEMA dibuja el icono del set cuyo nombre indica la aplicación consumidora con la forma de la referencia de diseño: caja de 24x24, trazo de 1,75 unidades de esa caja que escala con el icono, extremos y uniones redondeados, sin relleno.
+- FR-1: EL SISTEMA dibuja el icono del set cuyo nombre indica la aplicación consumidora con su forma (la de la referencia de diseño en los 44 que vienen de ella, la que fijó el propietario en los demás) y el estilo común: caja de 24x24, trazo de 1,75 unidades de esa caja que escala con el icono, extremos y uniones redondeados, sin relleno.
 - FR-2: EL SISTEMA ofrece los nombres del set como un conjunto cerrado, de modo que un nombre fuera del set se detecta al compilar la aplicación consumidora, y también como una lista que esta puede recorrer.
 - FR-3: CUANDO cambian el nombre, el tamaño o la etiqueta, EL SISTEMA actualiza el dibujo, el tamaño y el papel accesible del icono sin recargar la página.
 - FR-4: MIENTRAS no se indique un tamaño, EL SISTEMA dibuja el icono cuadrado con el tamaño de letra de su contenedor (1em); CUANDO se indica xs, sm, md o lg, usa el tamaño de icono del tema correspondiente (14, 16, 20 o 24 px por defecto) y sigue sus cambios si el tema lo redefine.
@@ -65,7 +65,7 @@ La librería no sabe dibujar iconos. El selector de tema (spec 001) los represen
 ## Criterios de finalización
 
 - Se cumplen todos los FR, NFR y casos límite.
-- La web de documentación muestra los 44 iconos con su nombre, los cuatro tamaños, el tamaño 1em y un ejemplo con etiqueta, en tema claro y oscuro.
+- La web de documentación muestra los 79 iconos con su nombre, los cuatro tamaños, el tamaño 1em y un ejemplo con etiqueta, en tema claro y oscuro.
 - El selector de tema muestra el sol o la luna en tamaño md y su tamaño no cambia al aparecer el icono.
 - El HTML prerenderizado de la web de documentación ya contiene el dibujo y la presentación de sus iconos.
 - La spec 001 queda actualizada mediante un cambio: su FR-2 refleja FR-10 y su "Fuera de alcance" ya no incluye el dibujo de los iconos; su `Status` sigue en `implemented`.
@@ -74,3 +74,7 @@ La librería no sabe dibujar iconos. El selector de tema (spec 001) los represen
 ## Preguntas abiertas
 
 - Ninguna por ahora.
+
+## Registro de cambios
+
+- 2026-11-27: el set pasa de 44 a 79 iconos por decisión del propietario (35 nuevos fuera de la referencia de diseño) y su orden deja de ser el de la referencia. Afecta a la definición del set, FR-1 y el criterio de finalización 2.

@@ -12,10 +12,10 @@ Reglas para cada tarea:
 Rutas relativas a `libs/smooth-ui/` salvo que se indique otra cosa.
 
 - [x] **T1. Tipos, interfaces y listas de nombres y tamaños.** FR-2, FR-4, caso límite 2
-- Hecho cuando: existen `src/lib/types/sui-icon.type.ts` (`SUI_ICON_NAME` con los 44 nombres, `SUI_ICON_SIZE` y `SUI_ICON_SHAPE`) y `src/lib/interfaces/sui-icon-shape.ts` (`SuiIconPath`, `SuiIconCircle`, `SuiIconRect`). `src/lib/constants/sui-icons.ts` exporta `SUI_ICON_NAMES` (44 nombres únicos, en el orden de `docs/smoothui.html`) y `SUI_ICON_SIZES` (`xs`, `sm`, `md`, `lg`). `src/lib/constants/sui-icons.spec.ts` lo comprueba e incluye un `// @ts-expect-error` al asignar `'not-an-icon'` a `SUI_ICON_NAME`. `smooth-ui:test` y `smooth-ui:typecheck` en verde.
+- Hecho cuando: existen `src/lib/types/sui-icon.type.ts` (`SUI_ICON_NAME` con los 79 nombres, `SUI_ICON_SIZE` y `SUI_ICON_SHAPE`) y `src/lib/interfaces/sui-icon-shape.ts` (`SuiIconPath`, `SuiIconCircle`, `SuiIconRect`). `src/lib/constants/sui-icons.ts` exporta `SUI_ICON_NAMES` (79 nombres únicos, en el orden de la definición del set de la spec, que el test fija en `REFERENCE_NAMES`) y `SUI_ICON_SIZES` (`xs`, `sm`, `md`, `lg`). `src/lib/constants/sui-icons.spec.ts` lo comprueba e incluye un `// @ts-expect-error` al asignar `'not-an-icon'` a `SUI_ICON_NAME`. `smooth-ui:test` y `smooth-ui:typecheck` en verde.
 
-- [x] **T2. Dibujo de los 44 iconos.** FR-1, FR-2, NFR-4
-- Hecho cuando: `SUI_ICONS` en `src/lib/constants/sui-icons.ts` tiene las formas de los 44 iconos, copiadas de los paths de `docs/smoothui.html`, con `satisfies Readonly<Record<SUI_ICON_NAME, readonly SUI_ICON_SHAPE[]>>`. Los tests comprueban:
+- [x] **T2. Dibujo de los 79 iconos.** FR-1, FR-2, NFR-4
+- Hecho cuando: `SUI_ICONS` en `src/lib/constants/sui-icons.ts` tiene las formas de los 79 iconos, copiadas de los paths de `docs/smoothui.html` (44) y de los dibujos que dio el propietario (35), con `satisfies Readonly<Record<SUI_ICON_NAME, readonly SUI_ICON_SHAPE[]>>`. Los tests comprueban:
   - que las claves de `SUI_ICONS` son exactamente `SUI_ICON_NAMES`;
   - que cada icono tiene al menos una forma;
   - las muestras del plan: `search` es un círculo `11,11,7` más el path `m20 20-3.5-3.5`, y `calendar` tiene un `rect` con `rx` 2.5.
@@ -59,17 +59,17 @@ Rutas relativas a `libs/smooth-ui/` salvo que se indique otra cosa.
 - [x] **T8. Página de iconos en la demo (`/docs/icons`).** Criterios de finalización 2 y 4
 - Hecho cuando:
   - `apps/smooth-ui-demo/src/app/pages/icons/icons-page.component.ts`, `.html` y `.scss` (`app-icons-page`) muestran, con tokens `--sui-*` y sin hex:
-    - los 44 iconos con su nombre visible, recorriendo `SUI_ICON_NAMES` con `@for (…; track name)`;
+    - los 79 iconos con su nombre visible, recorriendo `SUI_ICON_NAMES` con `@for (…; track name)`;
     - una fila con 1em, `xs`, `sm`, `md` y `lg`;
     - un ejemplo con etiqueta.
   - `app.routes.ts` tiene `docs/icons` con `loadComponent` y `''` → `redirectTo: 'docs/icons'` (`pathMatch: 'full'`).
-  - `icons-page.component.spec.ts` comprueba los 44 `sui-icon` con nombre, los cinco tamaños y un `role="img"` con nombre accesible.
+  - `icons-page.component.spec.ts` comprueba los 79 `sui-icon` con nombre, los cinco tamaños y un `role="img"` con nombre accesible.
   - `pnpm nx run smooth-ui-demo:test` y `smooth-ui-demo:lint` en verde.
 
 - [x] **T9. Verificación completa.** FR-9, NFR-2, NFR-3, criterios de finalización 4 y 6
 - Hecho cuando:
   - `pnpm nx format:check` y `pnpm nx run-many -t lint test build typecheck` están en verde.
-  - El HTML prerenderizado de `docs/icons` en `dist/apps/smooth-ui-demo/browser/` contiene al menos 44 `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"` con sus formas.
+  - El HTML prerenderizado de `docs/icons` en `dist/apps/smooth-ui-demo/browser/` contiene al menos 79 `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"` con sus formas.
   - `git diff --stat` no incluye ningún `package.json` ni `pnpm-lock.yaml`.
   - `MEMORY.md` está actualizado.
 
@@ -80,4 +80,4 @@ Rutas relativas a `libs/smooth-ui/` salvo que se indique otra cosa.
   - La demo no cambia: "With a label" ya se alinea con `.icon-label`.
   - `pnpm nx format:check` y `pnpm nx run-many -t lint test build typecheck` en verde.
 
-La validación en navegador queda para `/sdd-validate`: forma de los 44 iconos frente a `docs/smoothui.html`, tamaños reales, caja de FR-5 con su tamaño exacto en ambos ejes y el dibujo centrado, también dentro de un contenedor flex estrecho (375 px), color en claro, oscuro y hover, colores forzados, ausencia de relleno negro y de salto de layout con la red ralentizada, AXE en claro y oscuro, y el selector de tema con el icono de 20 px sin cambio de tamaño.
+La validación en navegador queda para `/sdd-validate`: forma de los 44 iconos de la referencia frente a `docs/smoothui.html` y estilo común en los 35 añadidos, tamaños reales, caja de FR-5 con su tamaño exacto en ambos ejes y el dibujo centrado, también dentro de un contenedor flex estrecho (375 px), color en claro, oscuro y hover, colores forzados, ausencia de relleno negro y de salto de layout con la red ralentizada, AXE en claro y oscuro, y el selector de tema con el icono de 20 px sin cambio de tamaño.
