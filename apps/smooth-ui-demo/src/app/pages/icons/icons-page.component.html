@@ -1,0 +1,33 @@
+<h1>Icon</h1>
+
+<section aria-labelledby="icons-set">
+  <h2 id="icons-set">Set</h2>
+  <ul class="icon-grid">
+    @for (name of names; track name) {
+      <li>
+        <sui-icon [name]="name" size="lg" />
+        <span>{{ name }}</span>
+      </li>
+    }
+  </ul>
+</section>
+
+<section aria-labelledby="icons-sizes">
+  <h2 id="icons-sizes">Sizes</h2>
+  <ul class="icon-sizes">
+    @for (size of sizes; track size) {
+      <li>
+        <sui-icon [size]="size" name="star" />
+        <span>{{ size ?? '1em' }}</span>
+      </li>
+    }
+  </ul>
+</section>
+
+<section aria-labelledby="icons-label">
+  <h2 id="icons-label">With a label</h2>
+  <p class="icon-label">
+    <sui-icon label="Search" name="search" />
+    With a label the icon is an image named "Search"; without one it is decorative.
+  </p>
+</section>
