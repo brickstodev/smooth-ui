@@ -1,5 +1,5 @@
 <button (click)="onToggle()" [attr.aria-label]="ariaLabel()" type="button">
   @if (icon(); as icon) {
-    <span class="visually-hidden" aria-hidden="true">{{ icon }}</span>
+    <sui-icon [name]="icon" size="md" />
   }
 </button>

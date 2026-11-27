@@ -1,9 +1,12 @@
 import { afterNextRender, Component, computed, inject, input, InputSignal, Signal, signal, WritableSignal } from '@angular/core';
 import { SuiThemeService } from '../../services/theme.service';
+import { SUI_ICON_NAME } from '../../types/sui-icon.type';
 import { SUI_THEME } from '../../types/sui-theme.type';
+import { SuiIconComponent } from '../sui-icon/sui-icon.component';
 
 @Component({
   selector: 'sui-theme-toggle',
+  imports: [SuiIconComponent],
   templateUrl: './sui-theme-toggle.component.html',
   styleUrl: './sui-theme-toggle.component.scss',
 })
@@ -17,7 +20,7 @@ export class SuiThemeToggleComponent {
   private readonly _isRendered: WritableSignal<boolean> = signal<boolean>(false);
   public readonly switchToLightLabel: InputSignal<string> = input<string>('');
   public readonly switchToDarkLabel: InputSignal<string> = input<string>('');
-  protected readonly icon: Signal<string | null> = computed<string | null>(() => {
+  protected readonly icon: Signal<SUI_ICON_NAME | null> = computed<SUI_ICON_NAME | null>(() => {
     const target: SUI_THEME | null = this._targetTheme();
     return target === null || !this._isRendered() ? null : target === 'dark' ? 'moon' : 'sun';
   });

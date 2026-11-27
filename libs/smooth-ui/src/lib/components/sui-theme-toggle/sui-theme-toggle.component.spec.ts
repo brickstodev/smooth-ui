@@ -1,14 +1,21 @@
-import { signal } from '@angular/core';
+import { DebugElement, signal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { SuiThemeService } from '../../services/theme.service';
+import { SUI_ICON_NAME } from '../../types/sui-icon.type';
+import { SuiIconComponent } from '../sui-icon/sui-icon.component';
 import { SuiThemeToggleComponent } from './sui-theme-toggle.component';
 
 function buttons(fixture: ComponentFixture<SuiThemeToggleComponent>): HTMLButtonElement[] {
   return Array.from((fixture.nativeElement as HTMLElement).querySelectorAll('button'));
 }
 
-function iconText(fixture: ComponentFixture<SuiThemeToggleComponent>): string | undefined {
-  return (fixture.nativeElement as HTMLElement).querySelector('button span[aria-hidden="true"]')?.textContent?.trim();
+function iconElement(fixture: ComponentFixture<SuiThemeToggleComponent>): DebugElement | null {
+  // Same as By.directive(SuiIconComponent), without depending on @angular/platform-browser (not a peer dependency).
+  return fixture.debugElement.query((element: DebugElement) => element.name === 'sui-icon' && element.componentInstance instanceof SuiIconComponent);
+}
+
+function iconName(fixture: ComponentFixture<SuiThemeToggleComponent>): SUI_ICON_NAME | null | undefined {
+  return iconElement(fixture)?.injector.get(SuiIconComponent).name();
 }
 
 function buttonByName(fixture: ComponentFixture<SuiThemeToggleComponent>, name: string): HTMLButtonElement | undefined {
@@ -37,22 +44,17 @@ describe('SuiThemeToggleComponent', () => {
     expect(buttons(fixture)[0].type).toBe('button');
   });
 
-  it('shows the moon icon hidden from assistive technology and the dark label in the light theme', () => {
+  it('renders a decorative md icon and keeps the button name', () => {
     const button = buttonByName(fixture, 'Switch to dark theme');
+    const icon: HTMLElement | null | undefined = button?.querySelector('sui-icon');
 
     expect(button).toBeDefined();
-    const icon = button?.querySelector('span');
-    expect(icon?.textContent?.trim()).toBe('moon');
+    expect(iconName(fixture)).toBe('moon');
     expect(icon?.getAttribute('aria-hidden')).toBe('true');
-  });
-
-  it('keeps the icon visually hidden and out of the accessible name', () => {
-    const button = buttonByName(fixture, 'Switch to dark theme');
-    const icon = button?.querySelector('span');
-
-    expect(icon).not.toBeNull();
-    expect(icon?.getAttribute('aria-hidden')).toBe('true');
-    expect(icon?.classList.contains('visually-hidden')).toBe(true);
+    expect(icon?.hasAttribute('role')).toBe(false);
+    expect(icon?.classList.contains('sui-icon--md')).toBe(true);
+    expect(icon?.querySelector('svg')).not.toBeNull();
+    expect(button?.querySelector('.visually-hidden')).toBeNull();
     expect(button?.getAttribute('aria-label')).toBe('Switch to dark theme');
   });
 
@@ -63,7 +65,7 @@ describe('SuiThemeToggleComponent', () => {
     const button = buttonByName(fixture, 'Switch to light theme');
 
     expect(button).toBeDefined();
-    expect(button?.querySelector('span[aria-hidden="true"]')?.textContent?.trim()).toBe('sun');
+    expect(iconName(fixture)).toBe('sun');
   });
 
   it('uses the custom labels', async () => {
@@ -93,14 +95,14 @@ describe('SuiThemeToggleComponent', () => {
     await fixture.whenStable();
 
     expect(service.theme()).toBe('dark');
-    expect(iconText(fixture)).toBe('sun');
+    expect(iconName(fixture)).toBe('sun');
     expect(buttonByName(fixture, 'Switch to light theme')).toBeDefined();
 
     buttons(fixture)[0].click();
     await fixture.whenStable();
 
     expect(service.theme()).toBe('light');
-    expect(iconText(fixture)).toBe('moon');
+    expect(iconName(fixture)).toBe('moon');
     expect(buttonByName(fixture, 'Switch to dark theme')).toBeDefined();
   });
 
@@ -113,7 +115,7 @@ describe('SuiThemeToggleComponent', () => {
     await other.whenStable();
 
     for (const instance of [fixture, other]) {
-      expect(iconText(instance)).toBe('sun');
+      expect(iconName(instance)).toBe('sun');
       expect(buttonByName(instance, 'Switch to light theme')).toBeDefined();
     }
   });
@@ -123,12 +125,12 @@ describe('SuiThemeToggleComponent', () => {
     // Refreshes only this view: afterNextRender hooks run on the application render, not here.
     fresh.componentRef.changeDetectorRef.detectChanges();
 
-    expect(iconText(fresh)).toBeUndefined();
+    expect(iconElement(fresh)).toBeNull();
     expect(buttonByName(fresh, 'Switch to dark theme')).toBeDefined();
 
     await fresh.whenStable();
 
-    expect(iconText(fresh)).toBe('moon');
+    expect(iconName(fresh)).toBe('moon');
   });
 });
 
@@ -140,7 +142,7 @@ describe('SuiThemeToggleComponent with an unknown theme', () => {
     const fixture: ComponentFixture<SuiThemeToggleComponent> = TestBed.createComponent(SuiThemeToggleComponent);
     await fixture.whenStable();
 
-    expect(iconText(fixture)).toBeUndefined();
+    expect(iconElement(fixture)).toBeNull();
     expect(buttonByName(fixture, 'Switch to dark theme')).toBeDefined();
   });
 });
