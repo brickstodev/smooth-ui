@@ -28,7 +28,7 @@ La librería define sus tokens de diseño en dos temas, claro y oscuro, pero no 
 ## Requisitos funcionales
 
 - FR-1: EL SISTEMA muestra un único botón que lleva el icono del tema al que se cambiará al activarlo (según FR-2) y un nombre accesible que describe esa acción.
-- FR-2: MIENTRAS el tema activo sea claro, EL SISTEMA pone en el botón el icono 'moon', y MIENTRAS sea oscuro, el icono 'sun'. MIENTRAS la página generada en el servidor no conozca aún el tema real del cliente, el botón no lleva ningún icono. El botón tiene el mismo tamaño con y sin icono. Hasta que exista el componente de iconos, el icono se representa con su nombre como texto oculto visualmente (no se ve en pantalla) y oculto a las tecnologías de asistencia; el nombre accesible es solo el de FR-9.
+- FR-2: MIENTRAS el tema activo sea claro, EL SISTEMA pone en el botón el icono 'moon', y MIENTRAS sea oscuro, el icono 'sun'. MIENTRAS la página generada en el servidor no conozca aún el tema real del cliente, el botón no lleva ningún icono. El botón tiene el mismo tamaño con y sin icono. El icono es el dibujo decorativo del componente de iconos (spec 002), con el tamaño md del tema (20 px por defecto) y oculto a las tecnologías de asistencia; el nombre accesible es solo el de FR-9.
 - FR-3: CUANDO el usuario activa el botón con clic, Enter o Espacio, EL SISTEMA aplica el otro tema a toda la página y actualiza el icono y el nombre accesible del botón.
 - FR-4: CUANDO el tema cambia, con el botón o por código, EL SISTEMA guarda ese tema como preferencia guardada.
 - FR-5: CUANDO la página se carga y existe una preferencia guardada válida, EL SISTEMA aplica ese tema.
@@ -58,7 +58,6 @@ La librería define sus tokens de diseño en dos temas, claro y oscuro, pero no 
 - Detectar cambios de tema hechos fuera del sistema: ni los de otras pestañas (cada una lo toma al recargar) ni los de otro código que modifique el atributo de tema. Al arrancar, el sistema sobrescribe cualquier tema previo del documento.
 - Avisar a la aplicación consumidora mediante un evento del propio selector.
 - Temas distintos de claro y oscuro, o temas definidos por la aplicación consumidora. El selector es binario a propósito: añadir temas requerirá una spec nueva que rediseñe el control.
-- El dibujo de los iconos; llegará con el componente de iconos.
 
 ## Criterios de finalización
 

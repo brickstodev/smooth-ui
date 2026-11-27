@@ -2,7 +2,7 @@
 
 Status: approved
 
-Spec: `specs/001-theme-toggle/spec.md` (Status: approved, sin preguntas abiertas). Revisado tras la validación (CHANGES REQUIRED) y el cambio de FR-2: ver "Correcciones tras la validación"; pendiente de aprobación.
+Spec: `specs/001-sui-theme-toggle/spec.md` (Status: approved, sin preguntas abiertas). Revisado tras la validación (CHANGES REQUIRED) y el cambio de FR-2: ver "Correcciones tras la validación"; pendiente de aprobación.
 
 ## Archivos y responsabilidades
 
@@ -160,6 +160,7 @@ Hallazgos de `/sdd-validate` (CHANGES REQUIRED). Lo que cambia ya está integrad
 
 - **C1. Destello claro en la build prerenderizada (FR-7, criterio 5).** En producción, `@angular/build:application` mete en línea el CSS crítico (Beasties) solo con las reglas que coinciden con el HTML prerenderizado, que no lleva `data-theme` (lo pone `theme-init.js` en el cliente); las reglas `[data-theme='dark']` quedan fuera y la hoja completa se carga sin bloquear (`media="print"` + `onload`). Corrección: en `configurations.production` de `apps/smooth-ui-demo/project.json`, `"optimization": { "scripts": true, "styles": { "minify": true, "inlineCritical": false }, "fonts": true }` (forma verificada en `node_modules/@angular/build/src/builders/application/schema.json`). `development` ya tiene `optimization: false`. El `README.md` lo indica para consumidores con SSR/prerender.
 - **C2. AXE `label-content-name-mismatch` (NFR-1, FR-2).** El texto del icono era visible y no forma parte del nombre accesible. Corrección: clase `.visually-hidden` en el `<span aria-hidden="true">`, como pide el nuevo FR-2.
+  - C2 superada por la spec 002 (FR-10); el cambio de plantilla, estilos y test se hace en el plan de la 002.
 - **C3. Contraste del anillo de foco en claro (NFR-1, WCAG 1.4.11 ≥ 3:1).** Contrastes calculados con la luminancia relativa WCAG y los valores de `theme.scss` (canvas claro `#f8f9fb`, surface claro `#ffffff`, canvas oscuro `#10141b`, surface oscuro `#151a22`):
 
   | Anillo                 | Canvas claro | Surface claro | Canvas oscuro | Surface oscuro |

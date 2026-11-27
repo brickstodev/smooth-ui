@@ -1,6 +1,6 @@
 # Tareas 001 — Theme toggle
 
-Plan: `specs/001-theme-toggle/plan.md` (Status: approved). Rutas relativas a `libs/smooth-ui/` salvo que se indique otra cosa. En cada tarea, primero los tests (rojo) y después el código.
+Plan: `specs/001-sui-theme-toggle/plan.md` (Status: approved). Rutas relativas a `libs/smooth-ui/` salvo que se indique otra cosa. En cada tarea, primero los tests (rojo) y después el código.
 
 - [x] **T1. Tipo, constantes y resolución inicial del servicio.** FR-5, FR-6, NFR-3
 - Hecho cuando: existen `SUI_THEME`, la clave `'sui-theme'` y `SuiThemeService` con `theme()`; `theme.service.spec.ts` cubre la tabla de casos compartida, la sobrescritura del `data-theme` previo, que la resolución no guarda nada, que un cambio posterior de `matchMedia` no cambia el tema y que en servidor `theme()` es `null` sin tocar DOM ni almacenamiento; `pnpm nx run smooth-ui:test` en verde.
