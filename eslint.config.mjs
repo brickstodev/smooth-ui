@@ -17,10 +17,7 @@ export default tseslint.config(
           default: ['private-field', 'public-field', 'protected-field', 'constructor', 'private-method', 'public-method', 'protected-method'],
         },
       ],
-      '@typescript-eslint/naming-convention': [
-        'error',
-        { selector: 'memberLike', modifiers: ['private'], format: ['camelCase'], leadingUnderscore: 'require' },
-      ],
+      '@typescript-eslint/naming-convention': ['error', { selector: 'memberLike', modifiers: ['private'], format: ['camelCase'], leadingUnderscore: 'require' }],
     },
   },
   {
