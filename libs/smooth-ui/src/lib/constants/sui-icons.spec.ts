@@ -1,7 +1,7 @@
 import { SUI_ICON_NAME } from '../types/sui-icon.type';
 import { SUI_ICON_NAMES, SUI_ICON_SIZES, SUI_ICONS } from './sui-icons';
 
-// Same order as the icon set in docs/smoothui.html.
+// The 44 icons of docs/smoothui.html plus the extended set, grouped by meaning.
 const REFERENCE_NAMES: readonly string[] = [
   'check',
   'x',
@@ -11,51 +11,86 @@ const REFERENCE_NAMES: readonly string[] = [
   'chevron-left',
   'arrow-right',
   'arrow-left',
+  'arrow-up',
+  'arrow-down',
   'plus',
   'minus',
+  'plus-circle',
+  'minus-circle',
   'search',
   'info',
   'alert-triangle',
+  'alert-circle',
   'check-circle',
   'x-circle',
   'star',
   'heart',
+  'thumbs-up',
+  'thumbs-down',
   'user',
   'settings',
   'bell',
   'calendar',
   'mail',
+  'message-circle',
+  'phone',
   'lock',
+  'shield',
+  'key',
   'eye',
   'eye-off',
   'trash',
   'edit',
+  'save',
   'download',
   'upload',
+  'undo',
+  'redo',
+  'refresh',
+  'loader',
   'more-horizontal',
   'more-vertical',
   'filter',
   'external-link',
+  'link',
+  'share',
   'copy',
-  'refresh',
   'sun',
   'moon',
   'menu',
+  'list',
   'home',
   'image',
+  'camera',
+  'play',
+  'pause',
   'file',
+  'folder',
+  'bookmark',
+  'tag',
+  'credit-card',
+  'shopping-cart',
+  'gift',
+  'map-pin',
+  'globe',
   'grid',
+  'circle',
+  'square',
+  'maximize',
+  'minimize',
   'clock',
   'help',
+  'log-out',
+  'log-in',
 ];
 
 describe('SUI_ICON_NAMES', () => {
-  it('has 44 unique names', () => {
-    expect(SUI_ICON_NAMES).toHaveLength(44);
-    expect(new Set(SUI_ICON_NAMES).size).toBe(44);
+  it('has 79 unique names', () => {
+    expect(SUI_ICON_NAMES).toHaveLength(79);
+    expect(new Set(SUI_ICON_NAMES).size).toBe(79);
   });
 
-  it('lists the names in the order of the design reference', () => {
+  it('lists the names in the reference order', () => {
     expect(SUI_ICON_NAMES).toEqual(REFERENCE_NAMES);
   });
 

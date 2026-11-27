@@ -7,7 +7,7 @@ describe('public API (src/index.ts)', () => {
     expect(publicApi.SuiIconComponent).toBeTypeOf('function');
     expect(publicApi.SuiThemeToggleComponent).toBeTypeOf('function');
     expect(publicApi.SuiThemeService).toBeTypeOf('function');
-    expect(publicApi.SUI_ICON_NAMES).toHaveLength(44);
+    expect(publicApi.SUI_ICON_NAMES).toHaveLength(79);
   });
 
   it('exports the SUI_THEME type', () => {

@@ -15,10 +15,10 @@ describe('IconsPageComponent', () => {
     expect(page.querySelector('h1')?.textContent?.trim()).toBe('Icon');
   });
 
-  it('lists the 44 icons, each with its visible name and its drawing', () => {
+  it('lists the 79 icons, each with its visible name and its drawing', () => {
     const items: HTMLLIElement[] = Array.from(page.querySelectorAll('section[aria-labelledby="icons-set"] li'));
 
-    expect(items).toHaveLength(44);
+    expect(items).toHaveLength(79);
     expect(items.map((item: HTMLLIElement) => item.textContent?.trim())).toEqual([...SUI_ICON_NAMES]);
     expect(items.every((item: HTMLLIElement) => item.querySelector('sui-icon svg') !== null)).toBe(true);
   });
